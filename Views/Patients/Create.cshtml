@@ -1,0 +1,30 @@
+@model DoctorsOffice.Models.Patient
+
+@if(@ViewBag.Doctors.Count == 0)
+{
+  <p>Please add a doctor before adding a patient</p>
+  <button>@Html.ActionLink("add a doctor", "Create", "Doctors")</button>
+}
+else
+{
+  <h1>Add a Patient Below:</h1>
+
+  @using(Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name,
+    new {@type="text", required ="required"})
+
+    @Html.LabelFor(model => model.DateVisit)
+    @Html.TextBoxFor(model => model.DateVisit,
+    new {@type="number", required = "required"})
+
+    @Html.Label("Select Doctor")
+    @Html.DropDownList("DoctorId")
+    <input type="submit" value= "add patient"/>
+  }
+}
+
+
+<button>@Html.ActionLink("Show Patients", "Index")</button>
+<button>@Html.ActionLink("Home page", "Index", "Home")</button>
